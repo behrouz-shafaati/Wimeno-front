@@ -10,9 +10,11 @@ const lightThemeOptions: ThemeOptions = {
     background: {
         paper: '#EFEFEF',
         default: '#FBFBFB'
+    },
+    text: {
+      primary: '#383838'
     }
-  },
-  direction: 'rtl',
+  }
 };
 
 export default lightThemeOptions;
