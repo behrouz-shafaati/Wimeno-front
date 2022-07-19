@@ -39,9 +39,10 @@ type Props = InputBaseProps &{
     id: string;
     wait: number;
     buttonText: string;
+    autoFocus: boolean;
   };
 
-const InputCode: React.FC<Props>  = ({ handleChange, id, buttonText, wait = 0,  sx = {},fields, label="", ...props }) => {
+const InputCode: React.FC<Props>  = ({ handleChange, id, buttonText, wait = 0,  sx = {},fields, label="", autoFocus = false, ...props }) => {
     const type = typeof props.type === 'undefined' ? 'number' : props.type;
     const preId = `inputCode-${id}-`;
     const getCode = () => {
@@ -56,54 +57,56 @@ const InputCode: React.FC<Props>  = ({ handleChange, id, buttonText, wait = 0,  
         el.setSelectionRange(end, end);
         el.focus();
     }
-    const handleKeyPress = (e) => {
-        if( e.key.toLowerCase() == "enter" )
-            return;
-        let el = document.getElementById(e.target.attributes['id'].value)
-        let nextEl = null;
-        let CurrentValue = e.target.value;
-        let newValue = e.key.replace(/\s/g, '');
-        if( newValue != '' )
-            el.value = e.key;
-        if( newValue != '' && e.target.attributes['data-next'].value != '%')
-            nextEl = document.getElementById(e.target.attributes['data-next'].value);
-        if(nextEl)
-        {
-            const end = nextEl.value.length;
-            nextEl.setSelectionRange(end, end);
-            nextEl.focus();
-        }
-
-        getCode();
-    }
     const handleKeyDown = (e) => {
-        let value = e.target.value;
+        let currentValue = e.target.value;
+        let newValue = e.key.replace(/\s/g, '');
+        let currentEl = document.getElementById(e.target.attributes['id'].value)
         let nextEl = null;
-        if(value == '' && e.target.attributes['data-before'].value != '%')
+        if(currentValue == '' && e.target.attributes['data-before'].value != '%'){
             nextEl = document.getElementById(e.target.attributes['data-before'].value);
+        }
         if( e.keyCode == 8 && nextEl ){ // key code 8 == back button
             const end = nextEl.value.length;
             nextEl.setSelectionRange(end, end);
             nextEl.focus();
         }
-        getCode()
     }
+    const handleOnChange = (e) => {
+        
+    }
+    const handleKeyUp = (e) => {
+        if (e.keyCode == 9)
+            return;
+        const lastChar = e.target.value.slice(-1);
+        document.getElementById(e.target.attributes['id'].value).value = lastChar;
+
+        
+        if( e.target.value == '' || e.target.attributes['data-next'].value == '%')
+            return;
+        const nextEl = document.getElementById(e.target.attributes['data-next'].value);
+        const end = nextEl.value.length;
+        nextEl.setSelectionRange(end, end);
+        nextEl.focus();
+        getCode();
+    }
+
     var inputs = [];
     for (var i = 1; i <= fields; i++) {
         let beforeId = i == 1 ? '%' : `${preId}${i-1}`;
+        let id = `${preId}${i}`;
         let nextId = i == fields ? '%' : `${preId}${i+1}`;
         inputs.push(
             <BootstrapInput 
                 inputProps={{
-                    maxLength: 1,
                     'data-before': beforeId,
                     'data-next': nextId
                 }}
                 key={`n${i}`}
-                id={`${preId}${i}`}
-                onKeyPress={handleKeyPress}
+                id={id}
                 onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
                 onClick={handleClick}
+                autoFocus={ (i==1 && autoFocus) ? true : false }
             />
         )
     } 

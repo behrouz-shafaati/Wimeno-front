@@ -27,7 +27,7 @@ const Register: NextPage = () => {
           </Box>
         </Box>
         <PageTitle title={t("register")} />
-        <InputText name={t("first_name")} />
+        <InputText name={t("first_name")} autoFocus />
         <InputText name={t("last_name")} />
         <InputText name={t("email")} />
         <InputText name={t("password")} type="password" />

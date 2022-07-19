@@ -35,7 +35,7 @@ const OwnershipVerification: NextPage = () => {
         <Typography sx={{ fontSize: '0.9rem', mt:3}}>
           {t("enter_ownership_emailed")}
         </Typography>
-        <InputCode id="code" handleChange={handleChangeCode} fields={4} wait= {60} buttonText={t("resend")} sx={{mt:4,mb:0}} />
+        <InputCode id="code" handleChange={handleChangeCode} fields={4} wait= {60} buttonText={t("resend")} sx={{mt:4,mb:0}} autoFocus={true} />
         <SendButton title={t("send")} variant='contained' loading={loading} onClick={handleClick} />
         <BLink href="/login" title={t("login")} />
       </Container>

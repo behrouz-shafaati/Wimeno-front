@@ -27,7 +27,10 @@ const ForgotPassword: NextPage = () => {
           </Box>
         </Box>
         <PageTitle title={t("forgot_password")} />
-        <InputText name={t("email")} />
+        <InputText
+          name={t("email")}
+          autoFocus  
+        />
         <SendButton title={t("send")} variant='contained' loading={loading} onClick={handleClick} />
         <BLink href="/login" title={t("login")} />
       </Container>

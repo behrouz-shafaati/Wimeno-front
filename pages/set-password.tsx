@@ -27,7 +27,7 @@ const SetNewPassword: NextPage = () => {
           </Box>
         </Box>
         <PageTitle title={t("set_new_password")} />
-        <InputText name={t("password")} />
+        <InputText name={t("password")} autoFocus />
         <InputText name={t("confirm_password")} type="password" />
         <SendButton title={t("send")} variant='contained' loading={loading} onClick={handleClick} />
         <BLink href="/login" title={t("login")} />

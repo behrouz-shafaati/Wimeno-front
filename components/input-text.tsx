@@ -45,7 +45,7 @@ const InputText: React.FC<Props> = ({register, error, sx, label, id, ...props}) 
   label = typeof label === 'undefined' ? props.name : label;
   id = typeof id === 'undefined' ? props.name : id;
   const type = typeof props.type === 'undefined' ? 'text' : props.type;
-
+  const r = register ? {...register(props.name)} : {};
   const handleClickShowPassword = () => {
     setShowPassword( prev => !prev )
   };
@@ -65,7 +65,7 @@ const InputText: React.FC<Props> = ({register, error, sx, label, id, ...props}) 
           id={id}
           {...props}
           type={showPassword ? 'text' : 'password'}
-          {...register(props.name)}
+          {...r}
           error={Boolean(error)}
         />
         <IconButton
@@ -80,9 +80,11 @@ const InputText: React.FC<Props> = ({register, error, sx, label, id, ...props}) 
         >
           <Image src={showPassword ? "/src/icons/akar-icons_eye-closed.svg" : "/src/icons/akar-icons_eye.svg" }  height={25} width={25} />
         </IconButton>
-        <FormHelperText error>
-                {error ? error.message : ""}
-        </FormHelperText>
+        { error &&
+          <FormHelperText error>
+                  {error ? error.message : ""}
+          </FormHelperText>
+        }
       </FormControl>
     )
 
@@ -96,12 +98,14 @@ const InputText: React.FC<Props> = ({register, error, sx, label, id, ...props}) 
         <BootstrapInput
           id={id}
           {...props}
-          {...register(props.name)}
+          {...r}
           error={Boolean(error)}
         />
-        <FormHelperText error>
-                {error ? error.message : ""}
-        </FormHelperText>
+        { error &&
+          <FormHelperText error>
+                  {error ? error.message : ""}
+          </FormHelperText>
+        }
       </FormControl>
     )
 }
