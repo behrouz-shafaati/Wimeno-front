@@ -15,8 +15,7 @@ class MyDocument extends Document {
         enhanceComponent: (Component) => Component,
       })
       // this is client side cookie that you want
-    const cookie = ctx.req ? ctx.req.headers.cookie : null
-    console.log("cookie:",cookie)
+    // const cookie = ctx.req ? ctx.req.headers.cookie : null
     const initialProps = await Document.getInitialProps(ctx)
 
     return {...initialProps, locale: ctx?.locale || "fa"}

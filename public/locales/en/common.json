@@ -128,5 +128,10 @@
     "suggest_new_category": "Suggest new category",
     "share_menu": "Send menu",
     "copy": "copy",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "password_recovery": "Password recovery",
+    "set_new_password": "Set new password",
+    "account_ownership_verification": "Account ownership verification",
+    "enter_ownership_emailed" : "Account ownership verification code has been sent to your email; Enter it below.",
+    "resend": "Resend"
 }

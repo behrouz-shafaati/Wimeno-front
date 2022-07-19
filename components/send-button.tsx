@@ -11,6 +11,7 @@ const BootstrapButton = styled(LoadingButton)(({ theme }) => ({
 );
 type Props = ButtonProps & {
     title: string;
+    loading: boolean;
 }
 
 const SendButton: React.FC<Props> = ({title, ...props}) => {

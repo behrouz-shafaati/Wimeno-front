@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { FormControl, IconButton, InputAdornment, InputLabel, Typography } from '@mui/material';
+import { FormControl, FormHelperText, IconButton, InputLabel, Typography } from '@mui/material';
 import InputBase, { InputBaseProps } from '@mui/material/InputBase';
 import { alpha, styled } from '@mui/material/styles';
+import { SxProps } from '@mui/material/styles';
 import Image from 'next/image';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -34,10 +35,10 @@ type Props = InputBaseProps &{
   name: string;
   label?: string;
   id?: string;
-  sx?: {};
+  sx?: SxProps;
 };
 
-const InputText: React.FC<Props> = ({sx, label, id, ...props}) => {
+const InputText: React.FC<Props> = ({register, error, sx, label, id, ...props}) => {
   const[showPassword, setShowPassword] = React.useState(false);
   sx = typeof sx === 'undefined' ? {mt:2} : sx;
   sx.width = typeof sx.width === 'undefined' ? '100%' : sx.width;
@@ -56,7 +57,7 @@ const InputText: React.FC<Props> = ({sx, label, id, ...props}) => {
     return(
       <FormControl sx={sx} variant="standard">
         <InputLabel shrink htmlFor={id}>
-          <Typography sx={{fontSize: '0.9rem', fontWeight: 500, color: 'text.primary'}}>
+          <Typography sx={{fontSize: '0.9rem', fontWeight: 500}}>
             {label}
           </Typography>
         </InputLabel>
@@ -64,6 +65,8 @@ const InputText: React.FC<Props> = ({sx, label, id, ...props}) => {
           id={id}
           {...props}
           type={showPassword ? 'text' : 'password'}
+          {...register(props.name)}
+          error={Boolean(error)}
         />
         <IconButton
           aria-label="toggle password visibility"
@@ -71,26 +74,34 @@ const InputText: React.FC<Props> = ({sx, label, id, ...props}) => {
           onMouseDown={handleMouseDownPassword}
           sx={{
             position: 'absolute',
-            bottom: '0px',
+            top: '26px',
             right: '1px'
           }}
         >
           <Image src={showPassword ? "/src/icons/akar-icons_eye-closed.svg" : "/src/icons/akar-icons_eye.svg" }  height={25} width={25} />
         </IconButton>
+        <FormHelperText error>
+                {error ? error.message : ""}
+        </FormHelperText>
       </FormControl>
     )
 
     return(
       <FormControl sx={sx} variant="standard">
         <InputLabel shrink htmlFor={id}>
-          <Typography sx={{fontSize: '0.9rem', fontWeight: 500, color: 'text.primary'}}>
+          <Typography sx={{fontSize: '0.9rem', fontWeight: 500}}>
             {label}
           </Typography>
         </InputLabel>
         <BootstrapInput
           id={id}
           {...props}
+          {...register(props.name)}
+          error={Boolean(error)}
         />
+        <FormHelperText error>
+                {error ? error.message : ""}
+        </FormHelperText>
       </FormControl>
     )
 }

@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { getCookies, getCookie, setCookie, deleteCookie } from 'cookies-next';
 import App, { AppProps, AppContext } from 'next/app'
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { appWithTranslation } from 'next-i18next';
 
 // import '@fontsource/roboto/300.css';
@@ -69,7 +67,6 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const req = appContext.ctx.req
   const res = appContext.ctx.res
   const theme = getCookie('THEME_MODE', { req, res }) || 'light';
-  console.log("cooke theme: ",theme)
 
   return {
     ...appProps,

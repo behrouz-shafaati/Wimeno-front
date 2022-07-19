@@ -10,7 +10,7 @@ type Props = {
 const Link_: React.FC<Props> = ({href, title}) => (
     <Box sx={{mt:2}}>
         <Link href={href}>
-            <Typography sx={{fontSize: '0.8rem', color: 'primary.main',fontWeight: 500}}>
+            <Typography sx={{fontSize: '0.8rem', color: 'primary.main',fontWeight: 500, width: 'fit-content'}}>
                 {title}
             </Typography>
         </Link>

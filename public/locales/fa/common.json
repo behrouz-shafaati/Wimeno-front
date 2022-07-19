@@ -126,5 +126,10 @@
     "suggest_new_category": "پیشنهاد دسته‌ی جدید",
     "share_menu": "ارسال منو",
     "copy": "کپی",
-    "whatsapp": "واتس‌اَپ"
+    "whatsapp": "واتس‌اَپ",
+    "password_recovery": "بازیابی رمز عبور",
+    "set_new_password": "تعیین پسورد جدید",
+    "account_ownership_verification": "احراز مالکیت حساب",
+    "enter_ownership_emailed" : "کد احراز مالکیت حساب به ایمیل شما ارسال شده است؛ آن را در زیر وارد کنید.",
+    "resend": "ارسال مجدد"
 }

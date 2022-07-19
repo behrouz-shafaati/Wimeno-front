@@ -12,7 +12,9 @@ const lightThemeOptions: ThemeOptions = {
         default: '#FBFBFB'
     },
     text: {
-      primary: '#383838'
+      primary: '#383838',
+      secondary: '#383838',
+      disabled: '#b1b1b1'
     }
   }
 };
